@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Well Soon, Hana!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EC 50%, #F8E8F0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.4;
+            animation: floatHeart 8s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #FF69B4;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0px #FFB7C5, 4px 4px 0px rgba(255, 105, 180, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #B19CD9;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Character Sections */
+        .section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.15);
+            border: 3px solid rgba(255, 182, 193, 0.5);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        .section:nth-child(4) { animation-delay: 0.8s; }
+        .section:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hello Kitty Section */
+        .hello-kitty-section {
+            border-color: rgba(255, 105, 180, 0.6);
+        }
+
+        .hello-kitty-section .character-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 5px solid #FFB7C5;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.3);
+            object-fit: cover;
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #FF69B4;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            color: #4A4A4A;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Kuromi Section */
+        .kuromi-section {
+            border-color: rgba(177, 156, 217, 0.6);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .kuromi-section h2 {
+            color: #8B5CF6;
+        }
+
+        .kuromi-section .character-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 5px solid #B19CD9;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+            object-fit: cover;
+            animation: gentleWobble 4s ease-in-out infinite;
+        }
+
+        @keyframes gentleWobble {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .kuromi-section .message {
+            color: #5B4A7A;
+        }
+
+        /* Bouquet Section */
+        .bouquet-section {
+            border-color: rgba(219, 112, 147, 0.6);
+        }
+
+        .bouquet-section h2 {
+            color: #DB7093;
+        }
+
+        .bouquet-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .bouquet-gif {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(219, 112, 147, 0.3);
+            animation: flowerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes flowerGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(219, 112, 147, 0.3); }
+            50% { box-shadow: 0 5px 30px rgba(219, 112, 147, 0.5); }
+        }
+
+        .flower {
+            font-size: 4rem;
+            animation: flowerSway 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .flower:hover {
+            transform: scale(1.2);
+        }
+
+        .flower:nth-child(1) { animation-delay: 0s; }
+        .flower:nth-child(2) { animation-delay: 0.5s; }
+        .flower:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes flowerSway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .flower-meaning {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Nutella Section */
+        .nutella-section {
+            border-color: rgba(139, 69, 19, 0.4);
+        }
+
+        .nutella-section h2 {
+            color: #8B4513;
+        }
+
+        .nutella-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nutella-item {
+            font-size: 4rem;
+            animation: nutellaPulse 2s ease-in-out infinite;
+        }
+
+        .nutella-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes nutellaPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nutella-message {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4C4 100%);
+            padding: 15px 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #8B4513;
+            font-weight: 600;
+            margin-top: 15px;
+            border: 2px dashed #DEB887;
+        }
+
+        /* Kiss Section */
+        .kiss-section {
+            border-color: rgba(255, 20, 147, 0.6);
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.9) 0%, rgba(255, 228, 236, 0.9) 100%);
+        }
+
+        .kiss-section h2 {
+            color: #FF1493;
+        }
+
+        .kiss-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-family: 'Fredoka One', cursive;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .kiss-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
+        }
+
+        .kiss-btn:active {
+            transform: scale(0.95);
+        }
+
+        .final-message {
+            text-align: center;
+            color: #FF1493;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.8;
+        }
+
+        /* Heart Particles */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            font-size: 2rem;
+            animation: heartPop 1s ease-out forwards;
+        }
+
+        @keyframes heartPop {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -100%) scale(1);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #B19CD9;
+            font-size: 0.9rem;
+        }
+
+        .footer .love {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Decorative Elements */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        .decoration-left {
+            left: 10px;
+            top: 20%;
+        }
+
+        .decoration-right {
+            right: 10px;
+            top: 40%;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .flower, .nutella-item {
+                font-size: 3rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>💗 Get Well Soon, Hana! 💗</h1>
+            <p class="subtitle">A little love from your special someone</p>
+        </header>
+
+        <!-- Hello Kitty Section - Reassurance -->
+        <section class="section hello-kitty-section">
+            <img src="https://i.pinimg.com/originals/44/30/7e/44307eb4a120068376a9997215ae85f3.gif" alt="Hello Kitty" class="character-img">
+            <h2>🌸 Oh No, My Poor Hana! 🌸</h2>
+            <p class="message">
+                Hey sweetie... I know the fever is making everything feel yucky right now.
+                Your head hurts, your body feels tired, and nothing seems right.
+                But I want you to know I'm right here with you, even if I can't be there in person.
+                💕 You're so strong for fighting this!
+            </p>
+        </section>
+
+        <!-- Kuromi Section - Mood & Tiredness -->
+        <section class="section kuromi-section">
+            <img src="https://i.pinimg.com/originals/0b/9e/d3/0b9ed3b501b6ca3db33ded5b00fb26e8.gif" alt="Kuromi" class="character-img">
+            <h2>💜 I'm Right Here With You 💜</h2>
+            <p class="message">
+                Kuromi understands you perfectly right now! 😈💜
+                <br><br>
+                It's alright to feel like this, my love. I completely understand.
+                You don't have to be strong or pretend to feel okay.
+                <br><br>
+                <strong>I'm right here with you, no matter what.</strong>
+                I'll be by your side through all of this. 💜
+            </p>
+        </section>
+
+        <!-- Bouquet Section -->
+        <section class="section bouquet-section">
+            <h2>💐 A Bouquet Just for You 💐</h2>
+            <div class="bouquet-container">
+                <img src="https://i.pinimg.com/originals/cd/45/74/cd45747793e90186233034651625d529.gif" alt="Flower Bouquet with Roses and Lilies" class="bouquet-gif">
+            </div>
+            <p class="message">
+                🌹 <strong>Roses</strong> for my endless love for you<br>
+                🌸 <strong>Lilies</strong> for how pure and beautiful you are<br>
+                ✨ <strong>Baby's Breath</strong> for our forever love
+            </p>
+            <p class="flower-meaning">
+                "Bloomed with all my love, just for my Hana" 💕
+            </p>
+        </section>
+
+        <!-- Nutella Section -->
+        <section class="section nutella-section">
+            <h2>🍞🌰 Emergency Nutella Supply! 🍞</h2>
+            <div class="nutella-container">
+                <span class="nutella-item">🍞</span>
+                <span class="nutella-item">🌰</span>
+                <span class="nutella-item">🍫</span>
+            </div>
+            <div class="nutella-message">
+                🥺 I know your Nutella is FINISHED and that makes everything even worse!<br><br>
+                Imagine this: warm, buttery toast with a big schmear of fresh Nutella waiting for you
+                when you're all better... 🍞✨🌰<br><br>
+                <strong>It's coming soon, I promise!</strong>
+            </div>
+        </section>
+
+        <!-- Kiss Section -->
+        <section class="section kiss-section">
+            <h2>💋 Sending You All the Kisses 💋</h2>
+            <button class="kiss-btn" onclick="sendKiss()">
+                💋 Click for a Kiss! 💋
+            </button>
+            <p class="message">
+                🤱 forehead kiss to cool down the fever<br>
+                😘 kiss on your cute nose<br>
+                💕 kiss on your soft cheeks<br>
+                ❤️ kiss straight to your heart
+            </p>
+            <p class="final-message">
+                I love you so so much, Hana! 💗<br><br>
+                Take a nap, drink lots of water, and rest well.<br>
+                I'll be right here when you wake up. 💤<br><br>
+                <strong>Always and forever yours,</strong><br>
+                Your man, your baby, your love, Tee loves you so much! 🥰💗
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="love">💗💗💗</div>
+            <p>Made with all my love for Hana 💕</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts background
+        function createHearts() {
+            const heartsBg = document.getElementById('heartsBg');
+            const heartSymbols = ['💗', '💕', '💖', '💘', '❤️', '�粉色', '✨'];
+
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    heartsBg.appendChild(heart);
+                }, i * 500);
+            }
+        }
+
+        // Kiss button effect
+        function sendKiss() {
+            const btn = document.querySelector('.kiss-btn');
+            const rect = btn.getBoundingClientRect();
+
+            // Create multiple heart particles
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-particle';
+                    heart.innerHTML = ['💋', '💗', '💕', '💖', '❤️'][Math.floor(Math.random() * 5)];
+                    heart.style.left = (rect.left + rect.width / 2) + 'px';
+                    heart.style.top = (rect.top + rect.height / 2) + 'px';
+                    document.body.appendChild(heart);
+
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1000);
+                }, i * 50);
+            }
+
+            // Button feedback
+            btn.innerHTML = '💗 MUAH! 💗';
+            setTimeout(() => {
+                btn.innerHTML = '💋 Click for a Kiss! 💋';
+            }, 2000);
+        }
+
+        // Add touch/click ripple effect on sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-particle';
+                    heart.innerHTML = '💕';
+                    heart.style.left = e.clientX + 'px';
+                    heart.style.top = e.clientY + 'px';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1000);
+                }
+            });
+        });
+
+        // Initialize
+        createHearts();
+    </script>
+</body>
+</html>
